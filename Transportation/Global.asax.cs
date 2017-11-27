@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Routing;
+﻿using System.Web.Http;
 using Transportation.App_Start;
 
 namespace Transportation
@@ -14,6 +9,7 @@ namespace Transportation
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configure(FormatConfig.Formatters);
+            GlobalConfiguration.Configure(DependencyInjectionConfig.RegisterDependencyInjection);
             AutoMapperConfig.Intialize();
         }
     }
