@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
+using Transportation.App_Start;
 
 namespace Transportation
 {
@@ -12,6 +13,7 @@ namespace Transportation
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            AutoMapperConfig.Intialize();
         }
     }
 }
