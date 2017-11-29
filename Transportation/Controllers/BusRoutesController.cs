@@ -25,6 +25,14 @@ namespace Transportation.Controllers
             return Map<IEnumerable<RouteViewModel>>(dataRoutes);
         }
 
+        [Route("{id}")]
+        public RouteViewModel GetRoute(int id, int routeId)
+        {
+            var dataRoute = _db.Buses.Single(b => b.Id == id).Routes.Single(r => r.Id == routeId);
+
+            return Map<RouteViewModel>(dataRoute);
+        }
+
         [Route("add/{routeId}")]
         [HttpPatch]
         public RouteViewModel AddRoute(int id, int routeId)
