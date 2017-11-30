@@ -7,7 +7,6 @@ namespace Transportation.Data.Models
     public class PointDataModel
     {
         public int Id { get; set; }
-        public string Point { get; set; }
         public double Price { get; set; }
         public TimeSpan ArrivalTime { get; set; }
 

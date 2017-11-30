@@ -158,6 +158,7 @@
     <Compile Include="Controllers\BusController.cs" />
     <Compile Include="Controllers\BusRoutesController.cs" />
     <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\RouteBusController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\RoutePointsController.cs" />
     <Compile Include="Global.asax.cs">
