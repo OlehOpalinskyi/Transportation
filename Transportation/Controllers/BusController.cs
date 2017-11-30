@@ -8,7 +8,7 @@ using static AutoMapper.Mapper;
 
 namespace Transportation.Controllers
 {
-    [RoutePrefix("buses")]
+    [RoutePrefix("api/buses")]
     public class BusController : ApiController
     {
         private readonly DataContext _db;

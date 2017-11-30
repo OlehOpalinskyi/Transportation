@@ -15,8 +15,6 @@ namespace Transportation.Data.Models
         }
 
         public int Id { get; set; }
-        public string PointA { get; set; }
-        public string PointB { get; set; }
         public double Price { get; set; }
 
         public virtual ICollection<BusDataModel> Buses { get; set; }

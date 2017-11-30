@@ -7,7 +7,7 @@ using static AutoMapper.Mapper;
 
 namespace Transportation.Controllers
 {
-    [RoutePrefix("bus/{id}/routes")]
+    [RoutePrefix("api/bus/{id}/routes")]
     public class BusRoutesController : ApiController
     {
         private readonly DataContext _db;
@@ -25,7 +25,7 @@ namespace Transportation.Controllers
             return Map<IEnumerable<RouteViewModel>>(dataRoutes);
         }
 
-        [Route("{id}")]
+        [Route("{routeId}")]
         public RouteViewModel GetRoute(int id, int routeId)
         {
             var dataRoute = _db.Buses.Single(b => b.Id == id).Routes.Single(r => r.Id == routeId);
