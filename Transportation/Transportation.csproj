@@ -161,6 +161,7 @@
     <Compile Include="Controllers\RouteBusController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\RoutePointsController.cs" />
+    <Compile Include="Controllers\TimeTableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

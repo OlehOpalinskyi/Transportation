@@ -22,7 +22,13 @@ namespace Transportation.App_Start
                 .ForMember(dest => dest.PointB, opt => opt.MapFrom(src => src.Cities.Last().Name))
                 .ReverseMap();
                 config.CreateMap<RouteDataModel, UpdateRouteModel>().ReverseMap();
-                config.CreateMap<TimeTableDataModel, TimeTableViewModel>().ReverseMap();
+                config.CreateMap<TimeTableUpdateModel, TimeTableDataModel>().ReverseMap();
+                config.CreateMap<TimeTableDataModel, TimeTableViewModel>()
+                .ForMember(dest => dest.NumberBus, opt => opt.MapFrom(src => src.Bus.NumberOfBus))
+                .ForMember(dest => dest.PointA, opt => opt.MapFrom(src => src.Route.Cities.First().Name))
+                .ForMember(dest => dest.PointB, opt => opt.MapFrom(src => src.Route.Cities.Last().Name))
+                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Route.Price))
+                .ReverseMap();
             });
         }
     }
