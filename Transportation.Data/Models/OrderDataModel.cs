@@ -11,6 +11,7 @@ namespace Transportation.Data.Models
         public string PointB { get; set; }
         public double Price { get; set; }
         public DateTime Date { get; set; }
+        public PaymentStatus Pay { get; set; }
         public int TimeTableId { get; set; }
 
         public string CustomerName { get; set; }
@@ -18,5 +19,12 @@ namespace Transportation.Data.Models
 
         [ForeignKey("TimeTableId")]
         public virtual TimeTableDataModel TimeTable { get; set; }
+    }
+
+    public enum PaymentStatus
+    {
+        Unknown,
+        Unpaid,
+        Paid
     }
 }

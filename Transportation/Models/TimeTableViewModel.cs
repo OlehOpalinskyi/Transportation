@@ -19,7 +19,7 @@ namespace Transportation.Models
     {
         public int BusId { get; set; }
         public int RouteId { get; set; }
-        public WeekDay Day { get; set; }
+        public DayOfWeek Day { get; set; }
         public TimeSpan Time { get; set; }
     }
 }

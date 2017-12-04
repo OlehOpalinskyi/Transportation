@@ -55,7 +55,7 @@ namespace Transportation.Controllers
 
         [Route("{id}")]
         [HttpPatch]
-        public TimeTableViewModel ChangeDate(int id, WeekDay day, TimeSpan time)
+        public TimeTableViewModel ChangeDate(int id, DayOfWeek day, TimeSpan time)
         {
             var record = _db.TimeTable.Single(t => t.Id == id);
             record.Day = day;

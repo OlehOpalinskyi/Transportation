@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201711302208433_updatePoint.Designer.cs">
       <DependentUpon>201711302208433_updatePoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712041213305_ChangeOrder.cs" />
+    <Compile Include="Migrations\201712041213305_ChangeOrder.Designer.cs">
+      <DependentUpon>201712041213305_ChangeOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusDataModel.cs" />
     <Compile Include="Models\CityDataModel.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711302208433_updatePoint.resx">
       <DependentUpon>201711302208433_updatePoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712041213305_ChangeOrder.resx">
+      <DependentUpon>201712041213305_ChangeOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

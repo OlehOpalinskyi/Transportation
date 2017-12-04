@@ -39,6 +39,7 @@ namespace Transportation.Controllers
         public CityViewModel AddCity(CityViewModel city)
         {
             var dataCity = Map<CityDataModel>(city);
+            dataCity.Name = char.ToUpper(city.Name.First()) + city.Name.Substring(1).ToLower();
             _db.Cities.Add(dataCity);
             _db.SaveChanges();
 
@@ -51,7 +52,7 @@ namespace Transportation.Controllers
         {
             var dataCity = _db.Cities.Single(c => c.Id == id);
 
-            dataCity.Name = name;
+            dataCity.Name = char.ToUpper(name.First()) + name.Substring(1).ToLower(); ;
             _db.SaveChanges();
 
             return Map<CityViewModel>(dataCity);
