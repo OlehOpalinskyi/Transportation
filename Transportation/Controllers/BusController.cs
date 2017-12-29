@@ -1,73 +1,50 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
-using Transportation.Data;
-using Transportation.Data.Models;
+using Transportation.Interfaces;
 using Transportation.Models;
-using static AutoMapper.Mapper;
 
 namespace Transportation.Controllers
 {
     [RoutePrefix("api/buses")]
     public class BusController : ApiController
     {
-        private readonly DataContext _db;
+        private readonly IBusService busService;
 
-        public BusController(DataContext db)
+        public BusController(IBusService service)
         {
-            _db = db;
+            busService = service;
         }
 
         [Route("")]
         public IEnumerable<BusViewModel> GetBuses()
         {
-            var dataBuses = _db.Buses;
-
-            return Map<IEnumerable<BusViewModel>>(dataBuses);
+            return busService.GetBuses();
         }
 
         [Route("{id}")]
         public BusViewModel GetBus(int id)
         {
-            var dataBus = _db.Buses.Single(b => b.Id == id);
-
-            return Map<BusViewModel>(dataBus);
+            return busService.GetBus(id);
         }
 
         [HttpPost]
         [Route("")]
         public BusViewModel AddBus(BusViewModel bus)
         {
-            var dataBus = Map<BusDataModel>(bus);
-
-            _db.Buses.Add(dataBus);
-            _db.SaveChanges();
-
-            return Map<BusViewModel>(dataBus);
+            return busService.AddBus(bus);
         }
         [HttpPut]
         [Route("{id}")]
         public BusViewModel EditBus(int id, BusViewModel bus)
         {
-            var originBus = _db.Buses.Single(b => b.Id == id);
-            bus.Id = id;
-
-            _db.Entry(originBus).CurrentValues.SetValues(bus);
-            _db.SaveChanges();
-
-            return Map<BusViewModel>(originBus);
+            return busService.EditBus(id, bus);
         }
 
         [HttpDelete]
         [Route("{id}")]
         public BusViewModel DeleteBus(int id)
         {
-            var bus = _db.Buses.Single(b => b.Id == id);
-
-            _db.Buses.Remove(bus);
-            _db.SaveChanges();
-
-            return Map<BusViewModel>(bus);
+            return busService.DeleteBus(id);
         }
     }
 }

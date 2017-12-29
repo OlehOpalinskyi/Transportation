@@ -2,6 +2,8 @@
 using DryIoc.WebApi;
 using System.Web.Http;
 using Transportation.Data;
+using Transportation.Interfaces;
+using Transportation.Service;
 
 namespace Transportation.App_Start
 {
@@ -16,6 +18,8 @@ namespace Transportation.App_Start
         private static Container Configure(Container container)
         {
             container.RegisterInstance(new DataContext());
+
+            container.Register<IBusService, BusService>(Reuse.Singleton);
 
             return container;
         }
