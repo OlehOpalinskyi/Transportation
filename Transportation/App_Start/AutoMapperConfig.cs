@@ -2,6 +2,7 @@
 using Transportation.Data.Models;
 using Transportation.Models;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Transportation.App_Start
 {
@@ -20,6 +21,7 @@ namespace Transportation.App_Start
                 config.CreateMap<RouteDataModel, RouteViewModel>()
                 .ForMember(dest => dest.PointA, opt => opt.MapFrom(src => src.Cities.First().Name))
                 .ForMember(dest => dest.PointB, opt => opt.MapFrom(src => src.Cities.Last().Name))
+                .ForMember(dest => dest.Buses, opt => opt.MapFrom(src => GetBuses(src)))
                 .ReverseMap();
                 config.CreateMap<RouteDataModel, UpdateRouteModel>().ReverseMap();
                 config.CreateMap<TimeTableUpdateModel, TimeTableDataModel>().ReverseMap();
@@ -27,9 +29,16 @@ namespace Transportation.App_Start
                 .ForMember(dest => dest.NumberBus, opt => opt.MapFrom(src => src.Bus.NumberOfBus))
                 .ForMember(dest => dest.PointA, opt => opt.MapFrom(src => src.Route.Cities.First().Name))
                 .ForMember(dest => dest.PointB, opt => opt.MapFrom(src => src.Route.Cities.Last().Name))
-                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Route.Price))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Route.Price))
                 .ReverseMap();
             });
+        }
+        public static List<int> GetBuses(RouteDataModel route)
+        {
+            var names = new List<int>();
+            foreach (var item in route.Buses)
+                names.Add(item.NumberOfBus);
+            return names;
         }
     }
 }

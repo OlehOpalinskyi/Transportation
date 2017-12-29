@@ -7,6 +7,7 @@ namespace Transportation.Models
         public int Id { get; set; }
 
         public ICollection<PointViewModel> Points { get; set; }
+        public ICollection<int> Buses { get; set; }
     }
 
     public class UpdateRouteModel

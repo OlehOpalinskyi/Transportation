@@ -75,6 +75,18 @@ namespace Transportation.Controllers
             else return true;
         }
 
+        private bool isAvailable(ref string err, OrderViewModel order)
+        {
+            var reservedPlaces = _db.Orders.Where(o => o.Date == order.Date && o.TimeTableId == order.TimeTableId).Count();
+            var countOfPlaces = _db.TimeTable.Single(t => t.Id == order.TimeTableId).Bus.CountOfPassengers;
+            if (reservedPlaces == countOfPlaces)
+            {
+                err = "There are no vacancies";
+                return false;
+            }
+            else return true;
+        }
+
         private string Validate(OrderViewModel order)
         {
             var err = string.Empty;
@@ -84,6 +96,7 @@ namespace Transportation.Controllers
                 err = "Incorrect date";
             CheckCity(ref err, route, order.PointA, order.PointB);
             CheckDate(ref err, order.Date, timeTable);
+            isAvailable(ref err, order);
 
             return err;
         }
