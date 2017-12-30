@@ -4,6 +4,7 @@ using System.Web.Http;
 using Transportation.Data;
 using Transportation.Interfaces;
 using Transportation.Service;
+using Transportation.Services;
 
 namespace Transportation.App_Start
 {
@@ -20,6 +21,7 @@ namespace Transportation.App_Start
             container.RegisterInstance(new DataContext());
 
             container.Register<IBusService, BusService>(Reuse.Singleton);
+            container.Register<ICityService, CityService>(Reuse.Singleton);
 
             return container;
         }
