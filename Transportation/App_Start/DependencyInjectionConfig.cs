@@ -23,6 +23,7 @@ namespace Transportation.App_Start
             container.Register<IBusService, BusService>(Reuse.Singleton);
             container.Register<ICityService, CityService>(Reuse.Singleton);
             container.Register<IRouteService, RouteService>(Reuse.Singleton);
+            container.Register<ICalendarService, CalendarService>(Reuse.Singleton);
 
             return container;
         }
