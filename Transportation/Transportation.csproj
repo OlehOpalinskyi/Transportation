@@ -169,6 +169,7 @@
     <Compile Include="Interfaces\IBusService.cs" />
     <Compile Include="Interfaces\ICalendarService.cs" />
     <Compile Include="Interfaces\ICityService.cs" />
+    <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IRouteService.cs" />
     <Compile Include="Models\BusViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Services\BusService.cs" />
     <Compile Include="Services\CalendarService.cs" />
     <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\RouteService.cs" />
   </ItemGroup>
   <ItemGroup>
