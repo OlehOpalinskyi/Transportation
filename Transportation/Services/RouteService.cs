@@ -130,6 +130,13 @@ namespace Transportation.Services
             _db.SaveChanges();
         }
 
+        public IEnumerable<TimeTableViewModel> GetCalendar(int id)
+        {
+            var calendar = _db.TimeTable.Where(c => c.RouteId == id);
+
+            return Map<IEnumerable<TimeTableViewModel>>(calendar);
+        }
+
         private RouteDataModel CreateRoute(UpdateRouteModel route)
         {
             var dataRoute = Map<RouteDataModel>(route);

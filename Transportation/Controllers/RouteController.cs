@@ -41,6 +41,12 @@ namespace Transportation.Controllers
             return _service.UpdateRoute(id, route);
         }
 
+        [Route("{id}/calendar")]
+        public IEnumerable<TimeTableViewModel> GetCalendar(int id)
+        {
+            return _service.GetCalendar(id);
+        }
+
         [HttpDelete]
         [Route("{id}")]
         public void DeleteRoute(int id)

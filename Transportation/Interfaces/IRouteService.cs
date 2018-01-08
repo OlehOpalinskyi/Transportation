@@ -18,5 +18,6 @@ namespace Transportation.Interfaces
         RouteViewModel AddPoints(int id, List<PointViewModel> points);
         PointViewModel UpdatePoint(int id, int pointId, PointViewModel point);
         void DeletePoint(int id, int pointId);
+        IEnumerable<TimeTableViewModel> GetCalendar(int id);
     }
 }
