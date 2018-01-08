@@ -25,6 +25,7 @@ namespace Transportation.App_Start
             container.Register<IRouteService, RouteService>(Reuse.Singleton);
             container.Register<ICalendarService, CalendarService>(Reuse.Singleton);
             container.Register<IOrderService, OrderService>(Reuse.Singleton);
+            container.Register<ISearchService, SearchService>(Reuse.Singleton);
 
             return container;
         }

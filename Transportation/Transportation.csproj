@@ -162,6 +162,7 @@
     <Compile Include="Controllers\RouteBusController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\RoutePointsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TimeTableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -171,6 +172,7 @@
     <Compile Include="Interfaces\ICityService.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IRouteService.cs" />
+    <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Models\BusViewModel.cs" />
     <Compile Include="Models\CityViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\RouteService.cs" />
+    <Compile Include="Services\SearchService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
