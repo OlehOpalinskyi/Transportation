@@ -16,7 +16,7 @@ namespace Transportation.Controllers
 
         [Route("api/search/pointA/pointB")]
         [HttpGet]
-        public IEnumerable<RouteViewModel> GetRoutes(int pointA, int pointB) // Test this!!!
+        public IEnumerable<RouteViewModel> GetRoutes(int pointA, int pointB)
         {
             return _service.GetRoutes(pointA, pointB);
         }

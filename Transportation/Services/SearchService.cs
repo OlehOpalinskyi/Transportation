@@ -24,7 +24,7 @@ namespace Transportation.Services
                 if (item.Cities.First().Id == pointA && item.Cities.Last().Id == pointB)
                 {
                     result.Add(Map<RouteViewModel>(item));
-                    //break;
+                    continue;
                 }
                     
                 if(item.Cities.First().Id == pointA && item.Cities.Last().Id != pointB)
@@ -32,7 +32,7 @@ namespace Transportation.Services
                     if(item.Points.SingleOrDefault(p => p.CityId == pointB) != null)
                     {
                         result.Add(Map<RouteViewModel>(item));
-                        //break;
+                        continue;
                     }
                 }
 
@@ -41,7 +41,7 @@ namespace Transportation.Services
                     if (item.Points.SingleOrDefault(p => p.CityId == pointA) != null)
                     {
                         result.Add(Map<RouteViewModel>(item));
-                        //break;
+                        continue;
                     }
                 }
 
