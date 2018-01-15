@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
+using Transportation.Identity;
 
 [assembly: OwinStartup(typeof(Transportation.App_Start.Startup))]
 
@@ -16,6 +17,10 @@ namespace Transportation.App_Start
             ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
+            FormatConfig.Formatters(config);
+            DependencyInjectionConfig.RegisterDependencyInjection(config);
+            AutoMapperConfig.Intialize();
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
 
