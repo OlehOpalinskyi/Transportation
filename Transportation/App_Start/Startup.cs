@@ -17,6 +17,7 @@ namespace Transportation.App_Start
             ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
+            SwaggerConfig.Register(config);
             FormatConfig.Formatters(config);
             DependencyInjectionConfig.RegisterDependencyInjection(config);
             AutoMapperConfig.Intialize();
