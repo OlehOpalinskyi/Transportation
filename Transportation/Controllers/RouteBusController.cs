@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,21 +17,24 @@ namespace Transportation.Controllers
         }
 
         [Route("")]
-        public IEnumerable<BusViewModel> GetBuses(int id)
+        [ResponseType(typeof(IEnumerable<BusViewModel>))]
+        public IHttpActionResult GetBuses(int id)
         {
-            return _service.GetBuses(id);
+            return Ok(_service.GetBuses(id));
         }
 
         [Route("subscribe/{busId}")]
-        public BusViewModel AddBus(int id, int busId)
+        [ResponseType(typeof(BusViewModel))]
+        public IHttpActionResult AddBus(int id, int busId)
         {
-            return _service.AddBus(id, busId);
+            return Ok(_service.AddBus(id, busId));
         }
 
         [Route("unsubscribe/{busId}")]
-        public IEnumerable<BusViewModel> RemoveBus(int id, int busId)
+        [ResponseType(typeof(IEnumerable<BusViewModel>))]
+        public IHttpActionResult RemoveBus(int id, int busId)
         {
-            return _service.RemoveBus(id, busId);
+            return Ok(_service.RemoveBus(id, busId));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,30 +17,34 @@ namespace Transportation.Controllers
             _service = service;
         }
 
-        public IEnumerable<TimeTableViewModel> GetTable()
+        [ResponseType(typeof(IEnumerable<TimeTableViewModel>))]
+        public IHttpActionResult GetTable()
         {
-            return _service.GetTable();
+            return Ok(_service.GetTable());
         }
 
         [Route("")]
         [HttpPost]
-        public TimeTableViewModel AddRecord(TimeTableUpdateModel table)
+        [ResponseType(typeof(TimeTableViewModel))]
+        public IHttpActionResult AddRecord(TimeTableUpdateModel table)
         {
-            return _service.AddRecord(table);
+            return Ok(_service.AddRecord(table));
         }
 
         [Route("{id}")]
         [HttpPut]
-        public TimeTableViewModel UpdateRecord(int id, TimeTableUpdateModel record)
+        [ResponseType(typeof(TimeTableViewModel))]
+        public IHttpActionResult UpdateRecord(int id, TimeTableUpdateModel record)
         {
-            return _service.UpdateRecord(id, record);
+            return Ok(_service.UpdateRecord(id, record));
         }
 
         [Route("{id}")]
         [HttpPatch]
-        public TimeTableViewModel ChangeDate(int id, DayOfWeek day, TimeSpan time)
+        [ResponseType(typeof(TimeTableViewModel))]
+        public IHttpActionResult ChangeDate(int id, DayOfWeek day, TimeSpan time)
         {
-            return _service.ChangeDate(id, day, time);
+            return Ok(_service.ChangeDate(id, day, time));
         }
 
         [Route("{id}")]

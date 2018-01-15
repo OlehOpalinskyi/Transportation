@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,9 +17,10 @@ namespace Transportation.Controllers
 
         [Route("api/search/pointA/pointB")]
         [HttpGet]
-        public IEnumerable<RouteViewModel> GetRoutes(int pointA, int pointB)
+        [ResponseType(typeof(IEnumerable<RouteViewModel>))]
+        public IHttpActionResult GetRoutes(int pointA, int pointB)
         {
-            return _service.GetRoutes(pointA, pointB);
+            return Ok(_service.GetRoutes(pointA, pointB));
         }
     }
 }

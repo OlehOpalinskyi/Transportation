@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,29 +17,33 @@ namespace Transportation.Controllers
         }
 
         [Route("")]
-        public IEnumerable<PointViewModel> GetPoints(int id)
+        [ResponseType(typeof(IEnumerable<PointViewModel>))]
+        public IHttpActionResult GetPoints(int id)
         {
-            return _service.GetPoints(id);
+            return Ok(_service.GetPoints(id));
         }
 
         [Route("{pointId}")]
-        public PointViewModel GetPoint(int id, int pointId)
+        [ResponseType(typeof(PointViewModel))]
+        public IHttpActionResult GetPoint(int id, int pointId)
         {
-            return _service.GetPoint(id, pointId);
+            return Ok(_service.GetPoint(id, pointId));
         }
 
         [Route("")]
         [HttpPost]
-        public RouteViewModel AddPoints(int id, List<PointViewModel> points)
+        [ResponseType(typeof(RouteViewModel))]
+        public IHttpActionResult AddPoints(int id, List<PointViewModel> points)
         {
-            return _service.AddPoints(id, points);
+            return Ok(_service.AddPoints(id, points));
         }
 
         [Route("{pointId}")]
         [HttpPatch]
-        public PointViewModel UpdatePoint(int id, int pointId, PointViewModel point)
+        [ResponseType(typeof(PointViewModel))]
+        public IHttpActionResult UpdatePoint(int id, int pointId, PointViewModel point)
         {
-            return _service.UpdatePoint(id, pointId, point);
+            return Ok(_service.UpdatePoint(id, pointId, point));
         }
 
         [Route("{pointId}")]

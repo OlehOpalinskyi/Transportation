@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,36 +17,41 @@ namespace Transportation.Controllers
         }
 
         [Route("")]
-        public IEnumerable<CityViewModel> GetCities()
+        [ResponseType(typeof(IEnumerable<CityViewModel>))]
+        public IHttpActionResult GetCities()
         {
-            return _service.GetCities();
+            return Ok(_service.GetCities());
         }
 
         [Route("{id}")]
-        public CityViewModel GetCity(int id)
+        [ResponseType(typeof(CityViewModel))]
+        public IHttpActionResult GetCity(int id)
         {
-            return _service.GetCity(id);
+            return Ok(_service.GetCity(id));
         }
 
         [HttpPost]
         [Route("")]
-        public CityViewModel AddCity(CityViewModel city)
+        [ResponseType(typeof(CityViewModel))]
+        public IHttpActionResult AddCity(CityViewModel city)
         {
-            return _service.AddCity(city);
+            return Ok(_service.AddCity(city));
         }
 
         [HttpPut]
         [Route("{id}/{name}")]
-        public CityViewModel UpdateCity(int id, string name)
+        [ResponseType(typeof(CityViewModel))]
+        public IHttpActionResult UpdateCity(int id, string name)
         {
-            return _service.UpdateCity(id, name);
+            return Ok(_service.UpdateCity(id, name));
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public CityViewModel DeleteCity(int id)
+        [ResponseType(typeof(CityViewModel))]
+        public IHttpActionResult DeleteCity(int id)
         {
-            return _service.DeleteCity(id);
+            return Ok(_service.DeleteCity(id));
         }
     }
 }

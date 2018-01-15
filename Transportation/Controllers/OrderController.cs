@@ -18,16 +18,19 @@ namespace Transportation.Controllers
         }
 
         [Route("")]
-        public IEnumerable<OrderViewModel> GetOrders()
+        [ResponseType(typeof(IEnumerable<OrderViewModel>))]
+        public IHttpActionResult GetOrders()
         {
-            return _service.GetOrders();
+            return Ok(_service.GetOrders());
         }
 
         [Route("{id}")]
-        public OrderViewModel GetOrder(int id)
+        [ResponseType(typeof(OrderViewModel))]
+        public IHttpActionResult GetOrder(int id)
         {
-            return _service.GetOrder(id);
+            return Ok(_service.GetOrder(id));
         }
+
         [Route("")]
         [HttpPost]
         [ResponseType(typeof(OrderViewModel))]

@@ -24,23 +24,26 @@ namespace Transportation.Controllers
         }
 
         [Route("{routeId}")]
-        public RouteViewModel GetRoute(int id, int routeId)
+        [ResponseType(typeof(RouteViewModel))]
+        public IHttpActionResult GetRoute(int id, int routeId)
         {
-            return _service.GetRoute(id, routeId);
+            return Ok(_service.GetRoute(id, routeId));
         }
 
         [Route("add/{routeId}")]
         [HttpPatch]
-        public RouteViewModel AddRoute(int id, int routeId)
+        [ResponseType(typeof(RouteViewModel))]
+        public IHttpActionResult AddRoute(int id, int routeId)
         {
-            return _service.AddRoute(id, routeId);
+            return Ok(_service.AddRoute(id, routeId));
         }
 
         [HttpDelete]
         [Route("remove/{routeId}")]
-        public RouteViewModel RemoveRoute(int id, int routeId)
+        [ResponseType(typeof(RouteViewModel))]
+        public IHttpActionResult RemoveRoute(int id, int routeId)
         {
-            return _service.RemoveRoute(id, routeId);
+            return Ok(_service.RemoveRoute(id, routeId));
         }
     }
 }

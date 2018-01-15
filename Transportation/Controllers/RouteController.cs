@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,29 +17,33 @@ namespace Transportation.Controllers
         }
 
         [Route("")]
-        public IEnumerable<RouteViewModel> GetRoutes()
+        [ResponseType(typeof(IEnumerable<RouteViewModel>))]
+        public IHttpActionResult GetRoutes()
         {
-            return _service.GetRoutes();
+            return Ok(_service.GetRoutes());
         }
 
         [Route("{id}")]
-        public RouteViewModel GetRoute(int id)
+        [ResponseType(typeof(RouteViewModel))]
+        public IHttpActionResult GetRoute(int id)
         {
-            return _service.GetRoute(id);
+            return Ok(_service.GetRoute(id));
         }
 
         [HttpPost]
         [Route("")]
-        public RouteViewModel AddRoute(UpdateRouteModel route)
+        [ResponseType(typeof(RouteViewModel))]
+        public IHttpActionResult AddRoute(UpdateRouteModel route)
         {
-            return _service.AddRoute(route);
+            return Ok(_service.AddRoute(route));
         }
 
         [HttpPatch]
         [Route("{id}")]
-        public RouteViewModel UpdateRoute(int id, UpdateRouteModel route)
+        [ResponseType(typeof(RouteViewModel))]
+        public IHttpActionResult UpdateRoute(int id, UpdateRouteModel route)
         {
-            return _service.UpdateRoute(id, route);
+            return Ok(_service.UpdateRoute(id, route));
         }
 
         [Route("{id}/calendar")]

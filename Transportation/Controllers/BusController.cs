@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,35 +17,41 @@ namespace Transportation.Controllers
         }
 
         [Route("")]
-        public IEnumerable<BusViewModel> GetBuses()
+        [ResponseType(typeof(IEnumerable<BusViewModel>))]
+        public IHttpActionResult GetBuses()
         {
-            return busService.GetBuses();
+            return Ok(busService.GetBuses());
         }
 
         [Route("{id}")]
-        public BusViewModel GetBus(int id)
+        [ResponseType(typeof(BusViewModel))]
+        public IHttpActionResult GetBus(int id)
         {
-            return busService.GetBus(id);
+            return Ok(busService.GetBus(id));
         }
 
         [HttpPost]
         [Route("")]
-        public BusViewModel AddBus(BusViewModel bus)
+        [ResponseType(typeof(BusViewModel))]
+        public IHttpActionResult AddBus(BusViewModel bus)
         {
-            return busService.AddBus(bus);
+            return Ok(busService.AddBus(bus));
         }
+
         [HttpPut]
         [Route("{id}")]
-        public BusViewModel EditBus(int id, BusViewModel bus)
+        [ResponseType(typeof(BusViewModel))]
+        public IHttpActionResult EditBus(int id, BusViewModel bus)
         {
-            return busService.EditBus(id, bus);
+            return Ok(busService.EditBus(id, bus));
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public BusViewModel DeleteBus(int id)
+        [ResponseType(typeof(BusViewModel))]
+        public IHttpActionResult DeleteBus(int id)
         {
-            return busService.DeleteBus(id);
+            return Ok(busService.DeleteBus(id));
         }
     }
 }
