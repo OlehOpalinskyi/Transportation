@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Transportation.Interfaces;
 using Transportation.Models;
 
@@ -16,9 +17,10 @@ namespace Transportation.Controllers
         }
 
         [Route("")]
-        public IEnumerable<RouteViewModel> GetRoutes(int id)
+        [ResponseType(typeof(IEnumerable<RouteViewModel>))]
+        public IHttpActionResult GetRoutes(int id)
         {
-            return _service.GetRoutes(id);
+            return Ok(_service.GetRoutes(id));
         }
 
         [Route("{routeId}")]

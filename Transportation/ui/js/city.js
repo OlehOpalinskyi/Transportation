@@ -59,7 +59,7 @@ function GetAll(baseUrl) {
         success: function (data) {
             var rows = "";
             for (var i = 0; i < data.length; i++) {
-                rows += '<tr data-id="' + data[i].id + '"><th scope="row">' + (i + 1) + "</th><td>" + data[i].name + '<td><button class="btn btn-secondary" data-toggle="modal" data-target="#editCity">Edit</button></td><td><button class="btn btn-danger">Delete</button></td></tr>';
+                rows += '<tr data-id="' + data[i].id + '"><th scope="row">' + (i + 1) + "</th><td>" + data[i].name + '</td><td><button class="btn btn-secondary" data-toggle="modal" data-target="#editCity">Edit</button></td><td><button class="btn btn-danger">Delete</button></td></tr>';
             }
             $('#cityTable').html(rows);
         }

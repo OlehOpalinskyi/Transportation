@@ -147,8 +147,10 @@
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="ui\Bus.html" />
     <Content Include="ui\Cities.html" />
     <Content Include="ui\css\style.css" />
+    <Content Include="ui\js\bus.js" />
     <Content Include="ui\js\jquery-3.2.1.min.js" />
     <Content Include="ui\js\city.js" />
     <Content Include="Web.config" />
