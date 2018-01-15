@@ -223,6 +223,7 @@
     <Compile Include="Models\PointViewModel.cs" />
     <Compile Include="Models\RouteViewModel.cs" />
     <Compile Include="Models\TimeTableViewModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BusService.cs" />
     <Compile Include="Services\CalendarService.cs" />
