@@ -201,6 +201,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusController.cs" />
     <Compile Include="Controllers\BusRoutesController.cs" />
     <Compile Include="Controllers\CityController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TimeTableController.cs" />
     <Compile Include="Identity\AuthContext.cs" />
+    <Compile Include="Identity\AuthRepository.cs" />
     <Compile Include="Interfaces\IBusService.cs" />
     <Compile Include="Interfaces\ICalendarService.cs" />
     <Compile Include="Interfaces\ICityService.cs" />
