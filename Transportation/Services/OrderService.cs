@@ -68,10 +68,19 @@ namespace Transportation.Services
 
         private bool isAvailable(ref string err, OrderUpdateModel order)
         {
-            var reservedPlaces = _db.Orders.Where(o => o.Date == order.Date && o.TimeTableId == order.TimeTableId).Count();
+            var orders = _db.Orders.Where(o => o.Date == order.Date && o.TimeTableId == order.TimeTableId).ToList();
+            var reservedPlaces = orders.Count;
             var countOfPlaces = _db.TimeTable.Single(t => t.Id == order.TimeTableId).Bus.CountOfPassengers;
             if (reservedPlaces == countOfPlaces)
             {
+                var pointsOfOrder = orders.First().TimeTable.Route.Points.ToList();
+                var startIndex = pointsOfOrder.FindIndex(x => x.CityId == order.PointA);
+                foreach(var item in orders)
+                {
+                    var endIndex = pointsOfOrder.FindIndex(x => x.CityId == item.PointB);
+                    if (endIndex <= startIndex)
+                        return true;
+                }
                 err = "There are no vacancies";
                 return false;
             }
