@@ -19,7 +19,7 @@ namespace Transportation.Services
         }
         public RouteViewModel AddRoute(UpdateRouteModel route)
         {
-            var dataRoute = CreateRoute(route);
+            var dataRoute = Map<RouteDataModel>(route);
             _db.Routes.Add(dataRoute);
             _db.SaveChanges();
 
@@ -49,14 +49,11 @@ namespace Transportation.Services
 
         public RouteViewModel UpdateRoute(int id, UpdateRouteModel route)
         {
-            var dataRoute = CreateRoute(route);
-            dataRoute.Id = id;
             var originRoute = _db.Routes.Single(r => r.Id == id);
-            originRoute.Price = dataRoute.Price;
-            originRoute.Cities.Clear();
-            originRoute.Cities = dataRoute.Cities;
+            originRoute.Price = route.Price;
+            originRoute.NameRoute = route.RouteName;
             _db.SaveChanges();
-            return Map<RouteViewModel>(dataRoute);
+            return Map<RouteViewModel>(originRoute);
         }
 
         public IEnumerable<BusViewModel> GetBuses(int id)
@@ -135,20 +132,6 @@ namespace Transportation.Services
             var calendar = _db.TimeTable.Where(c => c.RouteId == id);
 
             return Map<IEnumerable<TimeTableViewModel>>(calendar);
-        }
-
-        private RouteDataModel CreateRoute(UpdateRouteModel route)
-        {
-            var dataRoute = Map<RouteDataModel>(route);
-
-            var cityIdA = Convert.ToInt32(route.PointA);
-            var cityIdB = Convert.ToInt32(route.PointB);
-            var pointA = _db.Cities.Single(c => c.Id == cityIdA);
-            var pointB = _db.Cities.Single(c => c.Id == cityIdB);
-            dataRoute.Cities.Add(pointA);
-            dataRoute.Cities.Add(pointB);
-
-            return dataRoute;
         }
     }
 }

@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201712041213305_ChangeOrder.Designer.cs">
       <DependentUpon>201712041213305_ChangeOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801161137165_DeleteCitiesFromRoute.cs" />
+    <Compile Include="Migrations\201801161137165_DeleteCitiesFromRoute.Designer.cs">
+      <DependentUpon>201801161137165_DeleteCitiesFromRoute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusDataModel.cs" />
     <Compile Include="Models\CityDataModel.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712041213305_ChangeOrder.resx">
       <DependentUpon>201712041213305_ChangeOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801161137165_DeleteCitiesFromRoute.resx">
+      <DependentUpon>201801161137165_DeleteCitiesFromRoute.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

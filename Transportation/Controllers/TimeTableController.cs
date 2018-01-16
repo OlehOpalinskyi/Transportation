@@ -49,9 +49,11 @@ namespace Transportation.Controllers
 
         [Route("{id}")]
         [HttpDelete]
-        public void DeleteRecord(int id)
+        [ResponseType(typeof(void))]
+        public IHttpActionResult DeleteRecord(int id)
         {
             _service.DeleteRecord(id);
+            return Ok();
         }
     }
 }

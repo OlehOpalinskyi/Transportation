@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Http;
 using Transportation.Data;
 using Transportation.Data.Models;
 using Transportation.Interfaces;
@@ -94,12 +92,6 @@ namespace Transportation.Services
 
         private double GetPrice(RouteDataModel route, string pointA, string pointB)
         {
-            var startRoute = route.Cities.First().Name;
-            if (startRoute == pointA && route.Cities.Last().Name == pointB)
-                return route.Price;
-            if (startRoute == pointA)
-                return route.Points.Single(p => p.City.Name == pointB).Price;
-
             var price1 = route.Points.Single(p => p.City.Name == pointA).Price;
             var price2 = route.Points.Single(p => p.City.Name == pointB).Price;
             return price2 - price1;

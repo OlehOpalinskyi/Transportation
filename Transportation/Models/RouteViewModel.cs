@@ -12,8 +12,7 @@ namespace Transportation.Models
 
     public class UpdateRouteModel
     {
-        public string PointA { get; set; }
-        public string PointB { get; set; }
+        public string RouteName { get; set; }
         public double Price { get; set; }
     }
 }
