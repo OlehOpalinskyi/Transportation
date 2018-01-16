@@ -29,7 +29,8 @@ namespace Transportation.Services
             var dataOrder = _db.Orders.Single(o => o.Id == id);
             return Map<OrderViewModel>(dataOrder);
         }
-        public OrderViewModel CreateOrder(OrderViewModel order)
+
+        public OrderViewModel CreateOrder(OrderUpdateModel order)
         {
             var dataOrder = Map<OrderDataModel>(order);
             var timeTable = _db.TimeTable.SingleOrDefault(t => t.Id == order.TimeTableId);
@@ -37,14 +38,15 @@ namespace Transportation.Services
             dataOrder.Pay = PaymentStatus.Unpaid;
             dataOrder.Price = GetPrice(timeTable.Route, order.PointA, order.PointB);
             _db.Orders.Add(dataOrder);
+            _db.SaveChanges();
 
             return Map<OrderViewModel>(dataOrder);
         }
 
-        private bool CheckCity(ref string err, RouteDataModel route, string pointA, string pointB)
+        private bool CheckCity(ref string err, RouteDataModel route, int pointA, int pointB)
         {
-            var isPointA = route.Points.SingleOrDefault(p => p.City.Name == pointA);
-            var isPointB = route.Points.SingleOrDefault(p => p.City.Name == pointB);
+            var isPointA = route.Points.SingleOrDefault(p => p.City.Id == pointA);
+            var isPointB = route.Points.SingleOrDefault(p => p.City.Id == pointB);
             if (isPointA == null || isPointB == null)
             {
                 err = "Incorrect route";
@@ -64,7 +66,7 @@ namespace Transportation.Services
             else return true;
         }
 
-        private bool isAvailable(ref string err, OrderViewModel order)
+        private bool isAvailable(ref string err, OrderUpdateModel order)
         {
             var reservedPlaces = _db.Orders.Where(o => o.Date == order.Date && o.TimeTableId == order.TimeTableId).Count();
             var countOfPlaces = _db.TimeTable.Single(t => t.Id == order.TimeTableId).Bus.CountOfPassengers;
@@ -76,7 +78,7 @@ namespace Transportation.Services
             else return true;
         }
 
-        public string Validate(OrderViewModel order)
+        public string Validate(OrderUpdateModel order)
         {
             var err = string.Empty;
             var timeTable = _db.TimeTable.SingleOrDefault(t => t.Id == order.TimeTableId);
@@ -90,10 +92,10 @@ namespace Transportation.Services
             return err;
         }
 
-        private double GetPrice(RouteDataModel route, string pointA, string pointB)
+        private double GetPrice(RouteDataModel route, int pointA, int pointB)
         {
-            var price1 = route.Points.Single(p => p.City.Name == pointA).Price;
-            var price2 = route.Points.Single(p => p.City.Name == pointB).Price;
+            var price1 = route.Points.Single(p => p.City.Id == pointA).Price;
+            var price2 = route.Points.Single(p => p.City.Id == pointB).Price;
             return price2 - price1;
         }
     }

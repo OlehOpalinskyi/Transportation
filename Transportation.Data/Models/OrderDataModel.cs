@@ -7,8 +7,8 @@ namespace Transportation.Data.Models
     public class OrderDataModel
     {
         public int Id { get; set; }
-        public string PointA { get; set; }
-        public string PointB { get; set; }
+        public int PointA { get; set; }
+        public int PointB { get; set; }
         public double Price { get; set; }
         public DateTime Date { get; set; }
         public PaymentStatus Pay { get; set; }

@@ -34,7 +34,7 @@ namespace Transportation.Controllers
         [Route("")]
         [HttpPost]
         [ResponseType(typeof(OrderViewModel))]
-        public IHttpActionResult CreateOrder(OrderViewModel order)
+        public IHttpActionResult CreateOrder(OrderUpdateModel order)
         {
             var isValid = _service.Validate(order);
             if (isValid != string.Empty)

@@ -2,6 +2,8 @@
 using Transportation.Data.Models;
 using Transportation.Models;
 using System.Collections.Generic;
+using System.Linq;
+using Transportation.Data;
 
 namespace Transportation.App_Start
 {
@@ -9,11 +11,16 @@ namespace Transportation.App_Start
     {
         public static void Intialize()
         {
+            var _db = new DataContext();
             Mapper.Initialize((config) =>
             {
                 config.CreateMap<BusDataModel, BusViewModel>().ReverseMap();
                 config.CreateMap<CityDataModel, CityViewModel>().ReverseMap();
-                config.CreateMap<OrderDataModel, OrderViewModel>().ReverseMap();
+                config.CreateMap<OrderDataModel, OrderUpdateModel>().ReverseMap();
+                config.CreateMap<OrderDataModel, OrderViewModel>()
+                .ForMember(dest => dest.PointA, opt => opt.MapFrom(src => _db.Cities.Single(c => c.Id == src.PointA).Name))
+                .ForMember(dest => dest.PointB, opt => opt.MapFrom(src => _db.Cities.Single(c => c.Id == src.PointB).Name))
+                .ReverseMap();
                 config.CreateMap<PointDataModel, PointViewModel>()
                 .ForMember(dest => dest.Point, opt => opt.MapFrom(src => src.City.Name))
                 .ReverseMap();

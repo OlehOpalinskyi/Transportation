@@ -7,7 +7,7 @@ namespace Transportation.Interfaces
     {
         IEnumerable<OrderViewModel> GetOrders();
         OrderViewModel GetOrder(int id);
-        OrderViewModel CreateOrder(OrderViewModel order);
-        string Validate(OrderViewModel order);
+        OrderViewModel CreateOrder(OrderUpdateModel order);
+        string Validate(OrderUpdateModel order);
     }
 }
