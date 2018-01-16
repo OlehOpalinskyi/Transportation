@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201801161137165_DeleteCitiesFromRoute.Designer.cs">
       <DependentUpon>201801161137165_DeleteCitiesFromRoute.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801161251548_addRouteName.cs" />
+    <Compile Include="Migrations\201801161251548_addRouteName.Designer.cs">
+      <DependentUpon>201801161251548_addRouteName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BusDataModel.cs" />
     <Compile Include="Models\CityDataModel.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801161137165_DeleteCitiesFromRoute.resx">
       <DependentUpon>201801161137165_DeleteCitiesFromRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801161251548_addRouteName.resx">
+      <DependentUpon>201801161251548_addRouteName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,7 +15,7 @@ namespace Transportation.Interfaces
         IEnumerable<BusViewModel> RemoveBus(int id, int busId);
         IEnumerable<PointViewModel> GetPoints(int id);
         PointViewModel GetPoint(int id, int pointId);
-        RouteViewModel AddPoints(int id, List<PointViewModel> points);
+        RouteViewModel AddPoints(int id, List<PointUpdateModel> points);
         PointViewModel UpdatePoint(int id, int pointId, PointViewModel point);
         void DeletePoint(int id, int pointId);
         IEnumerable<TimeTableViewModel> GetCalendar(int id);

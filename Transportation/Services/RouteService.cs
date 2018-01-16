@@ -51,7 +51,7 @@ namespace Transportation.Services
         {
             var originRoute = _db.Routes.Single(r => r.Id == id);
             originRoute.Price = route.Price;
-            originRoute.NameRoute = route.RouteName;
+            originRoute.RouteName = route.RouteName;
             _db.SaveChanges();
             return Map<RouteViewModel>(originRoute);
         }
@@ -95,7 +95,7 @@ namespace Transportation.Services
             return Map<PointViewModel>(dataPoint);
         }
 
-        public RouteViewModel AddPoints(int id, List<PointViewModel> points)
+        public RouteViewModel AddPoints(int id, List<PointUpdateModel> points)
         {
             var route = _db.Routes.Single(r => r.Id == id);
             var dataPoints = Map<IEnumerable<PointDataModel>>(points);
@@ -103,6 +103,8 @@ namespace Transportation.Services
             {
                 var city = _db.Cities.Single(c => c.Id == item.CityId);
                 item.City = city;
+                item.RouteId = id;
+                item.Route = route;
                 route.Points.Add(item);
             }
             _db.SaveChanges();

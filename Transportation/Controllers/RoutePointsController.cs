@@ -33,7 +33,7 @@ namespace Transportation.Controllers
         [Route("")]
         [HttpPost]
         [ResponseType(typeof(RouteViewModel))]
-        public IHttpActionResult AddPoints(int id, List<PointViewModel> points)
+        public IHttpActionResult AddPoints(int id, List<PointUpdateModel> points)
         {
             return Ok(_service.AddPoints(id, points));
         }

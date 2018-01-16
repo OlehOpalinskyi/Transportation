@@ -15,7 +15,7 @@ namespace Transportation.Data.Models
 
         public int Id { get; set; }
         public double Price { get; set; }
-        public string NameRoute { get; set; }
+        public string RouteName { get; set; }
 
         public virtual ICollection<BusDataModel> Buses { get; set; }
         public virtual ICollection<PointDataModel> Points { get; set; }
