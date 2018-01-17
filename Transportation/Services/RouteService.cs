@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Transportation.Data;
 using Transportation.Data.Models;
@@ -42,7 +41,7 @@ namespace Transportation.Services
 
         public IEnumerable<RouteViewModel> GetRoutes()
         {
-            var dataRoutes = _db.Routes;
+            var dataRoutes = _db.Routes.ToList();
 
             return Map<IEnumerable<RouteViewModel>>(dataRoutes);
         }
@@ -58,7 +57,7 @@ namespace Transportation.Services
 
         public IEnumerable<BusViewModel> GetBuses(int id)
         {
-            var dataBuses = _db.Routes.Single(r => r.Id == id).Buses;
+            var dataBuses = _db.Routes.Single(r => r.Id == id).Buses.ToList();
 
             return Map<IEnumerable<BusViewModel>>(dataBuses);
         }
@@ -75,15 +74,17 @@ namespace Transportation.Services
         public IEnumerable<BusViewModel> RemoveBus(int id, int busId)
         {
             var bus = _db.Buses.Single(b => b.Id == busId);
+            var busesOfRoute = _db.Routes.Single(r => r.Id == id).Buses;
 
-            _db.Routes.Single(r => r.Id == id).Buses.Remove(bus);
+            busesOfRoute.Remove(bus);
+            _db.SaveChanges();
 
-            return Map<IEnumerable<BusViewModel>>(bus);
+            return Map<IEnumerable<BusViewModel>>(busesOfRoute.ToList());
         }
 
         public IEnumerable<PointViewModel> GetPoints(int id)
         {
-            var dataPoints = _db.Routes.Single(r => r.Id == id).Points;
+            var dataPoints = _db.Routes.Single(r => r.Id == id).Points.ToList();
 
             return Map<IEnumerable<PointViewModel>>(dataPoints);
         }
@@ -131,7 +132,7 @@ namespace Transportation.Services
 
         public IEnumerable<TimeTableViewModel> GetCalendar(int id)
         {
-            var calendar = _db.TimeTable.Where(c => c.RouteId == id);
+            var calendar = _db.TimeTable.Where(c => c.RouteId == id).ToList();
 
             return Map<IEnumerable<TimeTableViewModel>>(calendar);
         }
